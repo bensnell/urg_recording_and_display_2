@@ -1,0 +1,18 @@
+<group>
+	<Real-Time_Render>
+		<Draw_Real-Time_Render>0</Draw_Real-Time_Render>
+		<Spherical>0</Spherical>
+		<Z_Spacing>100</Z_Spacing>
+		<Number_of_Layers>20</Number_of_Layers>
+		<Rendering_Scale>0.2</Rendering_Scale>
+		<X_Translation>0</X_Translation>
+		<Y_Translation>0</Y_Translation>
+		<Z_Rotation>0</Z_Rotation>
+		<Mirror___Reverse>0</Mirror___Reverse>
+	</Real-Time_Render>
+	<group/>
+	<Start_New_Recording>0</Start_New_Recording>
+	<Stop_Recording>0</Stop_Recording>
+	<Recording_State>0</Recording_State>
+	<Live_Data>1</Live_Data>
+</group>
