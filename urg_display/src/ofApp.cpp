@@ -19,18 +19,18 @@ void ofApp::setup(){
 #ifndef spherical
     
     // load data
-    urg.loadLinearData("2015-11-17 13-47-51 recording.csv");
+    urg.loadLinearData("linear_test.csv");
     
     // fill mesh with the data
-    urg.fillLinearMesh();
+    urg.fillLinearMesh(0, -1, 300, 0, 682, false, 265, ofColor(255));
     
     // attach linear gui
     panel.add(urg.linearParams);
     
 #else
     
-    urg.loadSphericalData(<#string fileName#>);
-    urg.fillSphericalMesh();
+    urg.loadSphericalData("spherical_test.csv");
+    urg.fillSphericalMesh(225./64., 180, 0, 1, 0, 682, true, 265, 3, ofColor(255), true);
     panel.add(urg.sphericalParams);
     
 #endif
@@ -41,7 +41,6 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    
 
 }
 
@@ -57,7 +56,7 @@ void ofApp::draw(){
     
 #else
     
-    urg.drawSphericalMesh();
+    urg.drawSphericalMesh(false);
     
 #endif
     
@@ -65,6 +64,7 @@ void ofApp::draw(){
         panel.draw();
         ofDrawBitmapStringHighlight(ofToString(ofGetFrameRate()), 10, 20);
     }
+    ofDrawBitmapStringHighlight("L / R arrow keys slide linear or rotate spherical\nU / D arrow keys scale model up and down\nb for debug\ns for auto slide, r for auto rotate\nc to hide cursor\nf for fullscreen", 10, ofGetHeight() - 80);
 }
 
 //--------------------------------------------------------------

@@ -32,7 +32,7 @@ public:
     unsigned long nLinearScans;
     
     // fill the linear mesh with points according to the following parameters
-    void fillLinearMesh(int startScan = 0, int endScan = -1, int zScale = 30, int minIndex = 0, int maxIndex = 682, bool timeDependent = false, int cullDistance = 265, ofColor color = ofColor(255));
+    void fillLinearMesh(int startScan = 0, int endScan = -1, int zScale = 300, int minIndex = 0, int maxIndex = 682, bool timeDependent = false, int cullDistance = 265, ofColor color = ofColor(255));
     /*  
         startScan       starting scan index to include in mesh
         endScan         ending scan index to include in mesh (-1 for end)
@@ -52,13 +52,14 @@ public:
     ofParameter<float> linearSlideStep;
     ofParameter<bool> linearAutoSlide;
     ofParameter<float> linearAutoSlideStep;
-    ofParameter<float> xTranslation;
-    ofParameter<float> yTranslation;
+    ofParameter<float> linearXTranslation;
+    ofParameter<float> linearYTranslation;
     ofParameter<float> xRotation;
     ofParameter<float> yRotation;
     ofParameter<float> zRotation;
     ofParameter<bool> mirrorX;
     ofParameter<bool> mirrorY;
+    ofParameter<bool> mirrorZ;
     
     float linearSlideLerp;
     float linearSlideLerpAmt = 0.05;
@@ -72,40 +73,51 @@ public:
     
     void loadSphericalData(string fileName);
     
-    void fillSphericalMesh(float speed = 225./64., float startingPeriod = 0, float nPeriods = 1, int minIndex = 0, int maxIndex = 682, bool timeDependent = false, bool clockwise = true, int cullDistance = 265, float alignmentAngle = 0, ofColor color = ofColor(255));
+    ofBuffer sphericalBuffer;
+    unsigned long nSphericalScans;
+    
+    void fillSphericalMesh(float speed = 225./64., float period = 180, float startingPeriod = 0, float nPeriods = 1, int minIndex = 0, int maxIndex = 682, bool clockwise = true, int cullDistance = 265, float alignmentAngle = 0, ofColor color = ofColor(255), bool cullDuplicateScans = true);
     /*  
         speed           speed of rotating lidar (degrees / sec)
+        period          degrees in one period of rotation of the lidar
         startingPeriod  period of revolution at which to start loading points
         nPeriods        number of periods to load of data (1 = single scan)
         minIndex        lower bound of points to include from a scan
         maxIndex        upper bound of points to include from a scan
-        timeDependent   plot scans dependent on time captured (scans will not be evenly spaced)
         clockwise       whether lidar was rotating clockwise
         cullDistance    discard all points within this distance (mm) to lidar
         alignmentAngle  offset a single scan by this angle to align edges of hemisphere
+        cullDoubleScans scans are sometimes output by the sensor twice in a row, within 30 ms of each other; this will cull doubles
      */
     
-    void drawSphericalMesh();
-    
-    //void drawPointMeshSpherical(float scale, float slide);
-    
-    
-    
-    // ---------------------------
-    // -------- SAVE MESH --------
-    // ---------------------------
-
-    // ply format
-    
-    
-    
-    ofCamera camera;
+    void drawSphericalMesh(bool cameraOn = false);
     
     ofEasyCam easyCam;
     
+    ofParameterGroup sphericalParams;
+    ofParameter<float> sphericalScale;
+    ofParameter<float> sphericalRotation;
+    ofParameter<float> sphericalRotationStep;
+    ofParameter<bool> sphericalAutoRotation;
+    ofParameter<float> sphericalAutoRotationStep;
+    ofParameter<float> sphericalXTranslation;
+    ofParameter<float> sphericalYTranslation;
+    ofParameter<bool> flipX;
+    ofParameter<bool> flipY;
+    ofParameter<bool> flipZ;
+    
+    float sphericalRotationLerp;
+    float sphericalRotationLerpAmt = 0.05;
+    
+    
+    // ---------------------------
+    // ---------- UTILS ----------
+    // ---------------------------
+    
     void setKeyPressed(int key_);
-    int key;
-    int getKeyPressed();
+    int lkey, skey;
+    int getLKey();
+    int getSKey();
     
 };
 
