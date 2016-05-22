@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxCsv.h"
 #include "urgDisplay.h"
 #include "ofxGui.h"
 
@@ -11,6 +10,7 @@ class ofApp : public ofBaseApp{
 		void setup();
 		void update();
 		void draw();
+        void exit();
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -23,21 +23,11 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     urgDisplay urg;
+    
+    ofParameterGroup generalControls;
+    ofParameter<bool> cursorShowing;
+    ofParameter<bool> debug;
 
-    float scale = 1;
-    float slide = 0;
-    
-    Boolean constantSlide = false;
-    
-    int autoSlideStep = 12;
-    
-    Boolean cursorShowing = true;
-    
-    bool bDrawPanel;
-    
-    ofParameter<float> xTranslation;
-    ofParameter<float> yTranslation;
-    ofParameterGroup controls;
     ofxPanel panel;
     
 };

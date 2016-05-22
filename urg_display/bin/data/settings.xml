@@ -1,0 +1,21 @@
+<group>
+	<General_Controls>
+		<Show_Cursor>1</Show_Cursor>
+		<Debug>1</Debug>
+	</General_Controls>
+	<Linear_Mesh_Parameters>
+		<Scale>1.04467</Scale>
+		<Slide>267.456</Slide>
+		<Auto_Slide>0</Auto_Slide>
+		<Auto_Step>12</Auto_Step>
+		<X_Translation>-224.49</X_Translation>
+		<Y_Translation>-20.4082</Y_Translation>
+		<X_Rotation>0</X_Rotation>
+		<Y_Rotation>102.857</Y_Rotation>
+		<Z_Rotation>91.8367</Z_Rotation>
+		<Mirror_X>0</Mirror_X>
+		<Mirror_Y>1</Mirror_Y>
+	<Slide_Step>13.1224</Slide_Step>
+	</Linear_Mesh_Parameters>
+<group/>
+</group>
