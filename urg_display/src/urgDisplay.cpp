@@ -344,6 +344,34 @@ void urgDisplay::drawSphericalMesh(bool cameraOn) {
 }
 
 // ---------------------------------------------------------------------
+void urgDisplay::export_pointcloud(string _filename, ofMesh mesh, bool type_ply, bool type_csv){
+    
+    _filename=_filename.substr(0,_filename.size()-4);
+    // Create both, write to either or both
+    ofFile output_ply(_filename+".ply", ofFile::WriteOnly);
+    ofFile output_csv(_filename+".csv", ofFile::WriteOnly);
+    
+    if (type_ply){
+        // make PLY header
+        output_ply << "ply" << endl;
+        output_ply << "format ascii 1.0" << endl;
+        output_ply << "element vertex " << sphericalMesh.getVertices().size() << endl;
+        output_ply << "property float x" << endl;
+        output_ply << "property float y" << endl;
+        output_ply << "property float z" << endl;
+        output_ply << "end_header" << endl;
+    }
+    for (auto point : mesh.getVertices()){
+        // save 3D point out to ply or csv
+        if (type_csv)
+            output_csv << ofToString(point.x) << "," << ofToString(point.y) << "," << ofToString(point.z) << ",";
+        if (type_ply)
+            output_ply << ofToString(point.x) << " " << ofToString(point.y) << " " << ofToString(point.z) << endl;
+    }
+    
+}
+
+// ---------------------------------------------------------------------
 
 void urgDisplay::setKeyPressed(int key_) {
     lkey = skey = key_;

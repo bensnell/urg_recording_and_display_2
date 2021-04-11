@@ -119,6 +119,9 @@ public:
     int getLKey();
     int getSKey();
     
+    string filename;
+    void export_pointcloud(string _filename, ofMesh mesh, bool type_ply=true, bool type_csv=false);
+    
 };
 
 #endif /* defined(__urg_capture_display__urgDisplay__) */
